@@ -1,0 +1,18 @@
+what to Look For: The "Rules of a Valid Sale"
+To find problems, you don't need to be a data expert. You just need to look for anything in the data that breaks three simple, common-sense rules of a real-world sale:
+Rule #1: A sale must have a buyer. (We need to know who the customer is).
+Rule #2: A sale must be a purchase, not a return. (We need to identify and remove returns).
+Rule #3: A sale must have a positive price and quantity. (You can't sell something for $0, and you can't sell -1 of an item).
+
+
+
+
+Problem 1: Missing CustomerID. A large number of rows (thousands) have no value in the CustomerID column. 
+Plan: We must drop these rows (df.dropna(subset=['CustomerID'])) because they are unusable for customer analysis.
+
+
+Problem2 : Cancelled Orders/Returns. InvoiceNo starts with 'C' and Quantity is negative. Violates Rule #2. 
+Plan: Remove all rows where InvoiceNo starts with 'C'.
+
+Problem 3 : Zero UnitPrice. Violates Rule #3. 
+Plan: Remove all rows where UnitPrice is zero.
