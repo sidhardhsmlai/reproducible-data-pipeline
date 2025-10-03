@@ -18,6 +18,14 @@ def clean_data(df):
     df.dropna(subset=['CustomerID'], inplace=True)
     # --- Fix Problem 2: Remove Cancelled Orders (Returns) ---
     df=df[~df['InvoiceNo'].astype(str).str.startswith('C')]
+    # --- Fix Data types: Convert InvoiceDate to Datetime ---
+    df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+    # --- Final Numeric Sanity Check ---#
+    df=df[df['Quantity']>0]
+    df=df[df['UnitPrice']>0]
+    # --- Final Type Conversion for CustomerID ---
+    df['CustomerID']= df['CustomerID'].astype(int)
+
     return df
 
 
@@ -31,4 +39,8 @@ if __name__== "__main__":
     print(f"Rows after cleaning:{retail_df_clean.shape[0]}")\
     # 3. Print the head of the *cleaned* dataframe
     print("cleaned data.here are first 5 rows: ")
+    print("\nVerifying data types after cleaning:")
+    print(retail_df_clean.info())
     print(retail_df_clean.head())
+    print("retail_df_clean.describe RESULTS")
+    print(retail_df_clean.describe())
