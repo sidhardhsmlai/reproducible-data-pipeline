@@ -31,12 +31,15 @@ def clean_data(df):
 
 if __name__== "__main__":
     file_path = 'data/online_retail.csv'
+
      # 1. Load the data
     retail_df= load_data(file_path)
     print(f"Rows before cleaning:{retail_df.shape[0]}")
+
      # 2. Clean the data
     retail_df_clean = clean_data(retail_df)
-    print(f"Rows after cleaning:{retail_df_clean.shape[0]}")\
+    print(f"Rows after cleaning:{retail_df_clean.shape[0]}")
+    
     # 3. Print the head of the *cleaned* dataframe
     print("cleaned data.here are first 5 rows: ")
     print("\nVerifying data types after cleaning:")
@@ -44,3 +47,8 @@ if __name__== "__main__":
     print(retail_df_clean.head())
     print("retail_df_clean.describe RESULTS")
     print(retail_df_clean.describe())
+    
+    # 4. Save the cleaned data to a new file
+    output_path= 'data/clean_online_retail.csv'
+    retail_df_clean.to_csv(output_path, index=False)
+    print(f" Cleaned data successfully saved to: {output_path}")
