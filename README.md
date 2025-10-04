@@ -22,7 +22,7 @@ The `clean_data` function in `src/main.py` performs the following sequential ste
 ## How to Run
 1. Clone the repository:
    ```bash
-   git clone <https://github.com/sidhardhsmlai/reproducible-data-pipeline.git>
+   git clone https://github.com/sidhardhsmlai/reproducible-data-pipeline.git
    ```
 2. Navigate into the project directory:
    ```bash
